@@ -4,18 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "e21246229c7702ff",
+        "id": "be96437ef44277bd",
         "type": "tabs",
         "children": [
           {
-            "id": "948a95d2ccec23e9",
+            "id": "1cff0f556e3a6770",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
-              "state": {
-                "file": ".obsidian/themes/Fastnotes",
-                "staged": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -137,7 +134,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
