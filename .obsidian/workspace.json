@@ -11,8 +11,11 @@
             "id": "948a95d2ccec23e9",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "diff-view",
+              "state": {
+                "file": ".obsidian/themes/Fastnotes",
+                "staged": false
+              }
             }
           }
         ]
@@ -146,7 +149,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7a2204b6c25b24a3",
+  "active": "61b3bc3b6a5d4530",
   "lastOpenFiles": [
     "2. Nozioni di base/Pasted image 20241002094010.png",
     "2. Nozioni di base/Nozioni di base.md",
