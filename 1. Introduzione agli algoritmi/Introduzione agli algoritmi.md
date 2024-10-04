@@ -15,6 +15,7 @@
 - Esempi:
 	- $((1,9),10)\in \Pi$
 	- $((2,2),5)\notin \Pi$
+<div style="page-break-after: always;"></div>
 #### esempio: ordinamento di array di interi
 - Definizione del problema computazionale
 	- $I=\{A:A=\text{array di interi}\}$
@@ -68,6 +69,7 @@ Output: breve descrizione della soluzione restituita in output
 
 Descrizione dei passi elementari dell'algoritmo tramite di mix di costrutti dei linguaggi di programmazione e di linguaggio naturale
 ```
+<div style="page-break-after: always;"></div>
 #### costrutti
 - $\leftarrow$ 
 	- operazione di ==assegnazione== di un valore ad una variabile
@@ -102,7 +104,7 @@ Descrizione dei passi elementari dell'algoritmo tramite di mix di costrutti dei 
 	- organizzazione logica degli oggetti della collezione
 	- relazioni input/output che caratterizza ciascun metodo
 	- es: nella pila: ordinamento elementi e metodi di accesso/inserimento
-- **Livello fisico:
+- **Livello fisico**:
 	- gerarchia di _classi_
 	- layout fisico dei dati
 	- implementazione dei metodi tramite degli opportuni algoritmi
