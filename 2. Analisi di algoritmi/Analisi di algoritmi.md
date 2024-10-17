@@ -134,7 +134,7 @@
 	- 1. restringere dominio delle istanze
 	- 2. analisi del caso medio o cambiare probabilisticamente l'esecuzione
 <div style="page-break-after: always;"></div>
-<div style="page-break-after: always;"></div>
+
 ### analisi della correttezza
 #### proprietà di terminazione
 - Assicurarsi che i clicli e l'eventuale ricorsione abbia termine
@@ -163,6 +163,8 @@
 	- invariante vale alla **fine** di ciascuna **iterazione**
 		- si utilizza **induzione**
 	- invariante vale alla **fine** del **ciclo** $\Rightarrow$ vale $L$
+
+![[Pasted image 20241012144332.png|600]]
 ### ricorsione
 #### definizione di algoritmo ricorsivo
 - Algoritmo che **invoca se stesso** su istanze sempre più piccole
@@ -210,6 +212,9 @@
 - Ipotizzo upper/lower bound e lo provo per induzione (**guess**)
 #### metodo attraverso relazioni di ricorrenza
 - Utilizzo **Master theorem** per risoluzione delle relazioni di ricorrenza
+
+![[Pasted image 20241012144556.png]]
+![[Pasted image 20241012144649.png|700]]
 ### correttezza algoritmi ricorsivi
 - **Approccio** seguito per dimostrare correttezza di $A$ di taglia $n$
 	- Correttezza **casi base**
