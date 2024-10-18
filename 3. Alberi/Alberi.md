@@ -52,4 +52,33 @@
 #### definizione
 - $depth_{T}(v)=|antenati(v)|-1$
 #### definizione ricorsiva
+- se $v=r$ (radice), $depth_{T}(v)=0$
 - $depth_T(v)=1+depth_T(padre(v))$
+### livello
+- ==Livello== $i$ = insieme dei nodi a profondità $i$ ($\forall i \geq 0$)
+### altezza
+#### altezza nodo
+- se $v$ è foglia: $height_T(v)=0$
+- altrimenti: $height_T(v)=1+\max_{w\,:\,w \text{ figlio di }v}\{height_T(w)\}$
+#### altezza albero
+- $height(T)=height_T(r)$, $r$ radice di $T$
+#### relazione tra altezza e profondità
+- $height(T)=\max_{v \in T:\text { v foglia }}\{depth(v)\}$ 
+### implementazione albero in java
+#### nodo
+- Interfaccia ```Position<E>```
+![[Pasted image 20241018093631.png|500]]
+#### albero
+- Interfaccia ```Tree<E>```
+![[Pasted image 20241018093654.png|500]]
+### calcolo profondità di un nodo
+#### versione ricorsiva
+![[Pasted image 20241018094816.png|400]]
+>[!info] Osservazione
+>T è sempre parametro implicito (si può utilizzare con ```this```)
+
+#### versione iterativa
+![[Pasted image 20241018095924.png|310]]
+### calcolo altezza di un nodo
+#### versione ricorsiva
+![[Pasted image 20241018100247.png|350]]
