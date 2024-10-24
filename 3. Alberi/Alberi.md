@@ -103,3 +103,52 @@
 ![[Pasted image 20241018100247.png|350]]
 <div style="page-break-after: always;"></div>
 
+### visite di alberi
+- **Scansione** sistematica di tutti i nodi di $T$ che permette di eseguire una qualche operazione 
+  (==visita==) ad ogni nodo
+- Rappresentano un **design pattern algoritmico**
+	- può essere utilizzato per risolvere una grande varietà di problemi
+- Tipologie di visite:
+	- ==preorder==:
+		- **visita prima il padre e poi i sottoalberi radicati nei figli**
+		- le operazioni svolte su un certo nodo possono dipendere da quelle dei suoi antenati
+		- esplorare albero dall'alto verso il basso
+	- ==postorder==:
+		- **visita prima i sottoalberi radicati nei figli, poi il padre**
+		- le operazioni svolte su un certo nodo possono dipendere dai discendenti
+		- esplorare albero dal basso verso l'alto
+#### ordinamento visite
+- Sia $T$ albero ordinato, $u,v \in T$ due nodi allo stesso livello
+- $u$ è **a sinistra** di $v$
+	- se $u$ viene prima di $v$ nella visita in preorder
+#### visita in preorder: pattern algoritmico
+![[Pasted image 20241023085822.png|300]]
+>[!info] Chiamata iniziale
+>```preorder(T.root())```
+#### visita in postorder: pattern algoritmico
+![[Pasted image 20241023090000.png|350]]
+>[!info] Chiamata inziale
+>```postorder(T.root())```
+#### complessità delle visite
+- Dato $T$ con $n$ nodi:
+	- l'albero della ricorsione coincide con la struttura dell'albero
+- Ciascuna chiamata su un nodo $u \in T$ esegue un numero di operazioni:
+	- $\Theta (c_{u}+1+t_{u})$
+		- $c_{u}$ numero di figli $u$
+		- $t_{u}$ costo della visita $u$
+- Dato che l'algoritmo viene invocato esattamente una volta per ogni $u \in T$:
+	- complessità: $\Theta (\sum_{u \in T} (c_{u}+1+t_{u}))=\Theta(n+\sum_{n \in T} t_{u})$
+- Caso particolare: $t_{u}=O(1)$
+	- complessità: $\Theta(n)$
+### osservazioni per la scrittura di algoritmi ricorsivi
+- Si possono usare:
+	- **variabili globali**
+		- sopravvivono durante l'esecuzione di tutto l'algoritmo
+		- meglio evitare se possibile
+	- **variabili locali**
+		- hanno scope locale e spariscono al termine della chiamata ricorsive
+		- importante utilizzare i valori restituiti da invocazioni ricorsive
+### esempi di preorder e postorder
+![[Screenshot 2024-10-24 alle 08.36.44.png|600]]
+![[Screenshot 2024-10-24 alle 08.37.02.png|600]]
+<div style="page-break-after: always;"></div>
