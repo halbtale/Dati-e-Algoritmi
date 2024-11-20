@@ -151,4 +151,3 @@
 ### esempi di preorder e postorder
 ![[Screenshot 2024-10-24 alle 08.36.44.png|600]]
 ![[Screenshot 2024-10-24 alle 08.37.02.png|600]]
-<div style="page-break-after: always;"></div>
