@@ -270,53 +270,146 @@
 	- caso 1: $\Theta(1)$
 	- caso 2: $\Theta(h)$
 - Totale complessità: $\Theta(h)$
+
+<div style="page-break-after: always;"></div>
+
 ## multi-way search tree
 ### definizione di multi-way search tree
-- Un ==MWS-Tree== $T$ è un albero ordinato tale che:
-	- ogni nodo interno ha $d\geq 2$ figli $v_{1}, v_{2},\dots v_{d}$ 
+- Un ==MWS-Tree== $T$ è un **albero ordinato** tale che:
+	- ogni nodo **interno** ha $d\geq 2$ **figli**
+		- è detto **d-node**
 	- ogni nodo interno memorizza $d-1$ entry
 		- $(k_{1}, x_{1}),\dots (k_{d-1}, x_{d-1})$
-	- per $1\leq i \leq d$ vale:
-		- chiave $e$ memorizzata in $T_v$  soddisfa la relazione:
-			- $k_{k-1} <$ ```e.getKey()``` $< k_{i}$
-			- $k_{0}=-\infty$
-			- $k_{d}=+\infty$
-	- per convenzione le foglie **NON** contengono entry
+		- $k_{1}<k_{2}<\dots<k_{d-1}$
+	- Presa ogni entry $e$ memorizzata in $T_{v_{i}}\,\,\, \forall i: 1\leq i \leq d$ 
+		- $k_{k-1} <$ ```e.getKey()``` $< k_{i}$
+		- $k_{0}=-\infty$
+		- $k_{d}=+\infty$
+- Per convenzione le foglie **NON** memorizzano entry
 #### esempio: 4-node
-![[Pasted image 20241120084755.png|500]]
+![[Pasted image 20241120084755.png|400]]
 #### esempio: multi-way search tree
-![[Pasted image 20241120085047.png|500]]
-### priorietà entry - foglie
-- Un MWS-Tree che memorizza $n$ entry ha $n+1$ foglie
+![[Pasted image 20241120085047.png|400]]
+<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
+
 ### albero d-ario
-- Albero in cui tutti i nodi interni sono d-node
-- Numero di foglie = $(d-1)(\text{numero nodi interni})+1$
+- Fissato $d$, **albero** in cui **tutti** i **nodi** interni sono **d-node**
+- $n$ entry e $m$ foglie
+	- $n=(\text{\# nodi interni})\cdot (d-1)$
+	- $m=n+1=(\text{\# nodi interni})\cdot (d-1)+1$
 ### ricerca in mws
 ![[Pasted image 20241120092317.png|600]]
+<div style="page-break-after: always;"></div>
+
 ### metodo geT
 ![[Pasted image 20241120093745.png|400]]
 #### analisi complessità
-- $d_{max}=$ numero massimo di figli di un nodo di $T$
-- $h$ = altezza di $T$
-- Devo seguire un cammino di $\leq h$ e per ogni nodo devo scorrere fino a $d_{max}$ entry
-	- $O(d_{max}\cdot h)$
+- Dati
+	- $d_{max}=$ numero massimo di figli di un nodo di $T$
+	- $h$ = altezza di $T$
+- ```MWSearchTree```
+	- segue cammino $\leq h$ 
+	- per ogni nodo deve scorrere fino a $d_{max}$ entry
 - Trovato il nodo corretto, devo scorrere tutte le entry: $O(d_{max})$
 - Complessità complessiva: $O(d_{max}\cdot h)$
 ### definizione di (2,4)-tree
 - Si definisce ==(2,4)-Tree== un MWS-Tree tale che:
 	- ogni nodo interno è un **d-node** con $2\leq d \leq 4$
-		- $d_{max}\in\Theta(1)$
 	- tutte le foglie hanno la **stessa profondità**
-		- $h \in \theta(\log n)$
 #### esempio
 ![[Pasted image 20241120094732.png|500]]
-### altezza di un (2,4)-tree
-- Un (2,4)-Tree con $n>0$ ha altezza $\Theta(\log n)$
+
+<div style="page-break-after: always;"></div>
+
+<div style="page-break-after: always;"></div>
+
 ### metodo search/get: complessità
-- In un (2,4)-Tree con $n$ entry, la complessità di MWTreeSearch e get è:
-	- $\Theta(\log n)$
-#### dimostrazione
-- Poiché complessità di MWTreeSearch è $\Theta(d_{max}\cdot h)$
-	- $d_{max}\in \theta(1)$
+- Complessità generale di un MWSTree è $\Theta(d_{max}\cdot h)$
+	- $d_{max}\in \Theta(1)$
 	- $h\in \Theta(\log n)$
 - Allora, $\Theta(d_{max}\cdot h)=\Theta(\log h)$
+### metodo put
+![[Pasted image 20241121143959.png|600]]
+#### analisi complessità
+- Esecuzione ```MWTreeSearch```: $\Theta(\log n)$
+- Esecuzione ```split```: $\Theta(\log n)$
+- Totale: $\Theta(\log n)$
+
+>[!info] Osservazione
+>L'albero cresce in altezza dalla radice
+
+<div style="page-break-after: always;"></div>
+
+### metodo remove
+![[Pasted image 20241121155510.png|400]]
+#### analisi complessità
+- ```MWTreeSearch```: $\Theta(\log n)$
+- Chiamate ricorsive a ```Delete```: percorso lungo al più $\Theta(\log n)$
+- Complessità totale: $\Theta(\log n)$
+
+>[!info] Osservazione
+>L'albero decresce dalla radice
+
+<div style="page-break-after: always;"></div>
+
+## red-black tree
+### definizione di red-black tree
+- Si definisce ==Red-Black Tree== $T$ un albero binario di ricerca in cui i colori hanno un colore rosso o nero in cui valgono le seguenti proprietà:
+	- **Root Property**
+		- la radice è nera
+	- **External Property**
+		- le foglie sono nere
+	- **Red Property**
+		- i figli di un nodo rosso sono neri
+	- **Depth Property**
+		- tutte le foglie hanno la stessa _black depth_, ovvero il numero di antenati propri neri
+![[Pasted image 20241122093104.png|400]]
+>[!info] Osservazione
+>A differenza del caso generale, i red-black tree hanno sempre **altezza logaritmica**
+
+<div style="page-break-after: always;"></div>
+
+### corrispondenza (2,4)-tree in red-black tree
+![[Pasted image 20241122093200.png|500]]
+### proprietà
+- Seguono dal mapping con i $(2,4)$-Tree
+- Red-Black Tree con $n$ entry ha **altezza** $\Theta(\log n)$
+- I metodi **get**, **put**, **remove** hanno complessità $\Theta(\log n)$
+- Utilizzati da java per implementare ```TreeMap<k,V>```
+
+<div style="page-break-after: always;"></div>
+
+## dizionario o multimap
+### definizione
+- Mappe che ammettono la presenza di $>1$ entry con la **stessa** chiave
+### implementazione
+- Mappa in cui le entry sono $(k, L_{k})$
+	- $k$: chiave
+	- $L_{k}$: collezione di valori associati alla chiave
+		- implementabile con double-linked list o altre strutture dati
+### metodi caratterizzanti
+- ```get(k)```
+	- restituisce **collezione** con tutti i **valori** associati a entry con chiave $k$
+- ```put(k, v)```
+	- inserisce **sempre** nuova entry $(k, v)$ 
+	- non intacca altre entry con chiave $k$
+	- no output
+- ```delete(k, v)```
+	- rimuove una entry $(k, v)$ se tale entry esiste
+	- no output
+#### analisi complessità
+- ```get(k)```
+	- $\Theta(h)$
+- ```put(k, v)```
+	- $\Theta(h)$
+- ```remove(k, v)```
+	- $\Theta(h+s)$ con $s=|L_{k}|$
+	- il termine additivo $s$ tiene conto della ricerca della entry con chiave $k$ nella collezione per rimuoverla
+
+<div style="page-break-after: always;"></div>
+
+### riepilogo complessità
+![[Pasted image 20241122094435.png|500]]
+### domande di teoria
+![[Pasted image 20241122094718.png|600]]
