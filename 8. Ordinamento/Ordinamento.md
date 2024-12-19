@@ -44,6 +44,8 @@
 #### merge
 ![[Pasted image 20241213101329.png|600]]
 ![[Pasted image 20241213165443.png|500]]
+<div style="page-break-after: always;"></div>
+
 ### analisi complessità merge-sort
 #### complessità di merge
 - ```Merge(S1,S2,S)``` con $n=|S|=|S_{1}|+|S_{2}|$
@@ -66,6 +68,9 @@
 - Complessità totale:
 $$\Theta(\sum_{i=0}^{d}2^{i}\frac{n}{2^{i}})=\Theta(\sum_{i=0}^dn)=\Theta(n \cdot d)=\Theta(n \log n)$$
 ![[Pasted image 20241216125007.png|300]]
+
+<div style="page-break-after: always;"></div>
+
 #### albero ricorsione merge sort - caso 2
 - ```MergeSort(S)```, $|S|=n$
 - Caso $2^{d}<n<2^{d+1}, d\geq 0$
@@ -90,6 +95,9 @@ $$\Theta((\sum_{i=0}^{d}2^{i}\frac{2^d}{2^i})+{x\cdot 1})=\Theta(n\cdot d)=\Thet
 - La complessità può essere espressa tramite la relazione di ricorrenza:
 ![[Pasted image 20241216125905.png|400]]
 - Attraverso **Master Theorem** si può dimostrare che $t_{ms}(n)=\Theta(n \log n)$
+
+<div style="page-break-after: always;"></div>
+
 ### quicksort
 - Applica strategia **Divide-and-Conquer**
 - **Divide**
@@ -130,6 +138,9 @@ $$\Theta((\sum_{i=0}^{d}2^{i}\frac{2^d}{2^i})+{x\cdot 1})=\Theta(n\cdot d)=\Thet
 	- $S[j]\leq p, \forall j\in[a,l[$
 	- $S[j]\geq p, \forall j\in]r,b-1]$
 	- $l \leq r+1$
+
+<div style="page-break-after: always;"></div>
+
 ### analisi complessità quicksort
 #### complessità partition
 - ```Partition(S,a,b)``` 
@@ -154,3 +165,95 @@ $$\Theta((\sum_{i=0}^{d}2^{i}\frac{2^d}{2^i})+{x\cdot 1})=\Theta(n\cdot d)=\Thet
 	- istanza pessima: già ordinata
 	- $\Omega(n^2)$
 - **Complessità** totale: $\Theta(n^2)$
+### algoritmi deterministici e probabilistici
+#### definizione di algoritmo deterministico
+- Per ogni istanza di input esiste **una sola** possibile **esecuzione**
+- Analisi al ==caso pessimo==
+	- massimo numero di operazioni sulle istanze di una certa taglia
+#### definizione di algoritmo probabilistico (randomized)
+- Per ogni istanza di input esistono **diverse** possibili **esecuzioni**
+	- dipendono da **scelte casuali** fatte dall'algoritmo
+- Analisi in ==alta probabilità==: 
+	- fissata istanza **arbitraria** di taglia $n$
+		- caso pessimo in una frazione $\geq 1-\frac{1}{n}$ possibili esecuzioni
+		- si ignorano casi patologici con probabilità $<\frac{1}{n}$
+- Analisi ==in media==:
+	- **media** su tutte le esecuzioni possibili per quella istanza
+### randomized quicksort
+- Variante di ```QuickSortInPlace``` che evita il caso pessimo **probabilisticamente**
+- Il **pivot** è un elemento scelto a caso
+#### algoritmo partition
+![[Pasted image 20241218085924.png|350]]
+### analisi complessità di randomized quicksort
+#### lemma
+- Per ogni istanza $n$, una frazione almeno $1-\frac{1}{n}$ delle possibili esecuzioni ha un albero di ricorsione di altezza $O(\log n)$
+#### complessità in alta probabilità
+- Fissiamo un'istanza arbitraria di taglia $n$
+- Dal lemma, per una frazione di almeno $1-\frac{1}{n}$ delle possibili esecuzioni, l'albero della ricorsione ha altezza $O(\log n)$
+- I costi totali associati a ciascun livello sono $O(n)$
+- La complessità totale dell'algoritmo è $O(n \log n)$
+#### complessità media
+- Si effettua una media pesata:
+$$O(\frac{1}{n}\cdot n^{2}+{(1-\frac{1}{n})}\cdot n\log n)=O(n\log n)$$
+### definizione di inversione
+- Sia $S$ sequenza di $n$ chiavi
+- Si definisce ==inversione== una **coppia di indici** $(i,j)$
+	- $0\leq i≠i<n$
+	- $j<i$ e $S[j]>S[i]$
+- Dovrei invertirne la posizione per averle nell'ordine giusto
+#### osservazione
+- Sia $K$ numero di inversioni di $S$
+$$0\leq K\leq \binom{n}{2}=\frac{n(n-1)}{2}$$
+- $K=0$
+	- sequenza **ordinata** in modo **crescente**
+- $K=\binom{n}{2}$
+	- sequenza **ordinata** in modo **decrescente**
+### insertionsort
+- Data sequenza $S$, si mantiene un **prefisso ordinato**, costruito iterazione dopo iterazione
+	- ad ogni iterazione si sposta una nuova chiave all'interno del prefisso ordinato
+- Indici:
+	- $i$: indice elemento da inserire nel prefisso ordinato
+	- $j$: posizione prefisso ordinato che è $\leq curr$ 
+#### implementazione
+![[Pasted image 20241218094044.png|450]]
+#### correttezza
+- **Invariante** (valido alla fine di ciascuna iterazione)
+	- sottosequenza $S[j+i÷i]$ 
+		- ordinata
+		- chiavi $>$```curr```
+	- sottosequenza $S[0÷j]$
+		- ordinata
+		- chiavi $\leq$ di ciascuna chiave in $S[j+2÷i]$
+
+### analisi complessità di InsertionSort
+#### analisi standard
+- Considero $i-esima$ iterazione ciclo for:
+	- ciclo while esegue $O(i)$ operazione
+- **Upper bound**:
+	- $O(\sum_{i=1}^{n-1}i)=O(n^2)$
+- **Lower bound**:
+	- istanza pessima: sequenza ordinata in senso decrescente
+	- $\Omega(n^2)$
+- **Complessità** totale: 
+	- $\Theta(n^2)$
+#### analisi granulare
+- Sia $S$ sequenza di $n$ chiavi
+- Sia $K$ numero di inversioni di $S$
+- $\mathcal{I}=$ {sequenze di $n$ chiavi}
+- Nell'$i-esima$ iterazione del ciclo for:
+	- $k_{i}=$ numero di inversioni $(i,j), j<i$
+	- sia $y=S[i]$
+	- posso partizionare prefisso ordinato in:
+		- chiavi $\leq y$
+		- chiavi $>y$ 
+	- il numero di inversioni corrisponde al numero di volte che devo spostare la chiave verso sinistra (iterazioni ciclo while)
+- Totale iterazioni di while:
+	- $\sum_{i=1}^{n-1}k_{i}=$ numero totale di inversioni = $K$
+- Totale iterazioni ciclo for:
+	- $n$
+- Complessità complessiva:
+	- $\Theta(n+K)$
+
+>[!info] Osservazioni
+>- L'introduzione di $K$ permette una suddivisone più fine per l'analisi
+>- Non contraddice analisi _standard_ poiché $K=\Theta(n^2)$
